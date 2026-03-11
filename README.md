@@ -5,6 +5,12 @@ A lightweight, modern, and searchable jQuery plugin that transforms standard mul
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 ![jQuery](https://img.shields.io/badge/jquery-%3E%3D1.7-orange.svg)
 
+## 📸 Preview
+
+![Plugin Preview](preview.png)
+
+*Note: Take a screenshot of your working component and save it as `preview.png` in the root directory to display it here.*
+
 ## ✨ Features
 
 *   🔍 **Searchable:** Filter options in real-time with a built-in search bar.
