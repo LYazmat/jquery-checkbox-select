@@ -1,0 +1,171 @@
+/* Modern Checkbox Select Plugin Styles - Static List Version */
+.checkbox-select-container {
+    width: 100%;
+    font-family: inherit;
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.checkbox-select-search-wrapper {
+    padding: 0.875rem;
+    border-bottom: 1px solid #f1f5f9;
+    background: #ffffff;
+}
+
+.checkbox-select-search {
+    width: 100%;
+    padding: 0.5rem 0.875rem;
+    font-size: 0.875rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.625rem;
+    outline: none;
+    background: #f8fafc;
+    transition: all 0.2s ease;
+}
+
+.checkbox-select-search:focus {
+    background: #ffffff;
+    border-color: #cbd5e1;
+}
+
+.checkbox-select-options {
+    max-height: 280px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #e2e8f0 transparent;
+}
+
+.checkbox-select-options::-webkit-scrollbar {
+    width: 6px;
+}
+
+.checkbox-select-options::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.checkbox-select-options::-webkit-scrollbar-thumb {
+    background-color: #e2e8f0;
+    border-radius: 20px;
+}
+
+.checkbox-select-option {
+    display: flex;
+    align-items: center;
+    padding: 0.625rem 1rem;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    border-bottom: 1px solid #f8fafc;
+}
+
+.checkbox-select-option:last-child {
+    border-bottom: none;
+}
+
+.checkbox-select-option:hover {
+    background: #f1f5f9;
+}
+
+.checkbox-select-option input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 0.9rem;
+    height: 0.9rem;
+    margin-right: 1rem;
+    cursor: pointer;
+    border: 1px solid #cbd5e1;
+    border-radius: 3px;
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.checkbox-select-option input[type="checkbox"]:checked {
+    background-color: transparent;
+    border-color: #cbd5e1;
+}
+
+/* The "ok" symbol larger than the box, using a high-quality SVG for better aesthetics */
+.checkbox-select-option input[type="checkbox"]:checked::after {
+    content: '';
+    position: absolute;
+    width: 1.2rem;
+    height: 1.2rem;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+    top: -0.3rem;
+    left: 0.15rem;
+    pointer-events: none;
+    filter: drop-shadow(0px 1px 1px rgba(0,0,0,0.1));
+}
+
+.checkbox-select-option:active input[type="checkbox"] {
+    transform: scale(0.9);
+}
+
+.checkbox-select-option label {
+    font-size: 0.875rem;
+    color: #475569;
+    cursor: pointer;
+    flex: 1;
+    user-select: none;
+    font-weight: 400; /* Normal by default */
+    transition: all 0.15s ease;
+}
+
+.checkbox-select-option.selected label {
+    font-weight: 700; /* Bold when selected */
+    color: #1e293b;
+}
+
+.checkbox-select-option:hover label {
+    color: #1e293b;
+}
+
+.checkbox-select-actions {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.75rem 1rem;
+    border-top: 1px solid #f1f5f9;
+    background: #f8fafc;
+}
+
+.checkbox-select-btn {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #64748b;
+    background: transparent;
+    border: none;
+    padding: 0.375rem 0.75rem;
+    cursor: pointer;
+    border-radius: 0.5rem;
+    transition: all 0.2s ease;
+    user-select: none;
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+}
+
+.checkbox-select-btn:hover {
+    background: #f1f5f9;
+    color: #3b82f6;
+}
+
+.checkbox-select-btn:active {
+    transform: translateY(1px);
+}
+
+.checkbox-select-no-results {
+    padding: 2.5rem 1rem;
+    text-align: center;
+    font-size: 0.875rem;
+    color: #94a3b8;
+    display: none;
+}
