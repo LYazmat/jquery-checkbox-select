@@ -7,6 +7,8 @@ import $ from 'jquery';
             selectAllText: 'Select All',
             deselectAllText: 'Deselect All',
             noResultsText: 'No results found',
+            showSelectAll: true,
+            showDeselectAll: true,
             onSelect: function() {}
         }, options);
 
@@ -20,18 +22,28 @@ import $ from 'jquery';
             // Create container
             const $container = $('<div class="checkbox-select-container"></div>');
             
-            // Create list structure (formerly dropdown)
+            // Create actions HTML conditionally
+            let actionsHtml = '';
+            if (settings.showSelectAll || settings.showDeselectAll) {
+                actionsHtml = '<div class="checkbox-select-actions">';
+                if (settings.showSelectAll) {
+                    actionsHtml += `<button type="button" class="checkbox-select-btn select-all">${settings.selectAllText}</button>`;
+                }
+                if (settings.showDeselectAll) {
+                    actionsHtml += `<button type="button" class="checkbox-select-btn deselect-all">${settings.deselectAllText}</button>`;
+                }
+                actionsHtml += '</div>';
+            }
+
+            // Create list structure
             const $list = $(`
                 <div class="checkbox-select-list">
                     <div class="checkbox-select-search-wrapper">
-                        <input type="text" class="checkbox-select-search" placeholder="Search...">
+                        <input type="text" class="checkbox-select-search" placeholder="${settings.placeholder}">
                     </div>
                     <div class="checkbox-select-options"></div>
                     <div class="checkbox-select-no-results">${settings.noResultsText}</div>
-                    <div class="checkbox-select-actions">
-                        <button type="button" class="checkbox-select-btn select-all">${settings.selectAllText}</button>
-                        <button type="button" class="checkbox-select-btn deselect-all">${settings.deselectAllText}</button>
-                    </div>
+                    ${actionsHtml}
                 </div>
             `);
 

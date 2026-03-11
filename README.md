@@ -66,6 +66,8 @@ $(document).ready(function() {
 | Option | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
 | `placeholder` | `string` | `"Search..."` | Text displayed in the search input. |
+| `showSelectAll` | `boolean` | `true` | Whether to show the "Select All" button. |
+| `showDeselectAll` | `boolean` | `true` | Whether to show the "Deselect All" button. |
 | `onSelect` | `function` | `null` | Callback function triggered when selection changes. Receives an array of selected values. |
 
 ## 💅 Customization
