@@ -9,8 +9,6 @@ A lightweight, modern, and searchable jQuery plugin that transforms standard mul
 
 ![Plugin Preview](preview.png)
 
-*Note: Take a screenshot of your working component and save it as `preview.png` in the root directory to display it here.*
-
 ## ✨ Features
 
 *   🔍 **Searchable:** Filter options in real-time with a built-in search bar.
@@ -54,6 +52,8 @@ Initialize the plugin with a single line of JavaScript:
 $(document).ready(function() {
     $('#my-select').checkboxSelect({
         placeholder: "Search options...",
+        selectAllText: "Selecionar Todos",
+        deselectAllText: "Desmarcar Todos",
         onSelect: function(values) {
             console.log("Selected values:", values);
         }
@@ -66,6 +66,9 @@ $(document).ready(function() {
 | Option | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
 | `placeholder` | `string` | `"Search..."` | Text displayed in the search input. |
+| `selectAllText` | `string` | `"Select All"` | Text for the "Select All" button. |
+| `deselectAllText` | `string` | `"Deselect All"` | Text for the "Deselect All" button. |
+| `noResultsText` | `string` | `"No results found"` | Text displayed when no search results are found. |
 | `showSelectAll` | `boolean` | `true` | Whether to show the "Select All" button. |
 | `showDeselectAll` | `boolean` | `true` | Whether to show the "Deselect All" button. |
 | `onSelect` | `function` | `null` | Callback function triggered when selection changes. Receives an array of selected values. |
