@@ -7,7 +7,7 @@ A lightweight, modern, and searchable jQuery plugin that transforms standard mul
 
 ## 📸 Preview
 
-![Plugin Preview](assets/preview.png)
+![Plugin Preview](./assets/preview.png)
 
 ## ✨ Features
 
