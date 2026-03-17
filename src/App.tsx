@@ -22,6 +22,8 @@ export default function App() {
         selectAllText: 'Selecionar Todos',
         deselectAllText: 'Desmarcar Todos',
         noResultsText: 'Nenhum resultado encontrado',
+        selectedGroupText: 'Selecionados',
+        availableGroupText: 'Não selecionados',
         onSelect: (values: string[]) => {
           setSelectedValues(values || []);
         }
