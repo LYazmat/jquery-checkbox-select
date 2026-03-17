@@ -71,6 +71,7 @@ $(document).ready(function() {
 | `noResultsText` | `string` | `"No results found"` | Text displayed when no search results are found. |
 | `selectedGroupText` | `string` | `"Selected"` | Header text for the group of selected options. |
 | `availableGroupText` | `string` | `"Available"` | Header text for the group of unselected options. |
+| `ignoreDiacritics` | `boolean` | `true` | Whether the filter should ignore accents, cedillas, etc. |
 | `showSelectAll` | `boolean` | `true` | Whether to show the "Select All" button. |
 | `showDeselectAll` | `boolean` | `true` | Whether to show the "Deselect All" button. |
 | `onSelect` | `function` | `null` | Callback function triggered when selection changes. Receives an array of selected values. |

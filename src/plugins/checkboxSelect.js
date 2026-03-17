@@ -9,6 +9,7 @@ import $ from 'jquery';
             noResultsText: 'No results found',
             selectedGroupText: 'Selected',
             availableGroupText: 'Available',
+            ignoreDiacritics: true,
             showSelectAll: true,
             showDeselectAll: true,
             onSelect: function() {}
@@ -54,6 +55,11 @@ import $ from 'jquery';
 
             const $optionsContainer = $list.find('.checkbox-select-options');
             const $search = $list.find('.checkbox-select-search');
+
+            const normalizeString = (str) => {
+                if (!str) return '';
+                return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+            };
 
             // Populate options
             function populateOptions() {
@@ -147,11 +153,19 @@ import $ from 'jquery';
 
             // Search
             $search.on('input', function() {
-                const query = $(this).val().toLowerCase();
+                let query = $(this).val().toLowerCase();
+                if (settings.ignoreDiacritics) {
+                    query = normalizeString(query);
+                }
+                
                 let hasResults = false;
 
                 $optionsContainer.find('.checkbox-select-option').each(function() {
-                    const text = $(this).find('label').text().toLowerCase();
+                    let text = $(this).find('label').text().toLowerCase();
+                    if (settings.ignoreDiacritics) {
+                        text = normalizeString(text);
+                    }
+
                     if (text.indexOf(query) > -1) {
                         $(this).show();
                         hasResults = true;
