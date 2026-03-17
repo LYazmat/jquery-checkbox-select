@@ -7,7 +7,7 @@ A lightweight, modern, and searchable jQuery plugin that transforms standard mul
 
 ## 📸 Preview
 
-![Plugin Preview](/assets/preview.png)
+![Plugin Preview](assets/preview.png)
 
 ## ✨ Features
 
@@ -69,6 +69,8 @@ $(document).ready(function() {
 | `selectAllText` | `string` | `"Select All"` | Text for the "Select All" button. |
 | `deselectAllText` | `string` | `"Deselect All"` | Text for the "Deselect All" button. |
 | `noResultsText` | `string` | `"No results found"` | Text displayed when no search results are found. |
+| `selectedGroupText` | `string` | `"Selected"` | Header text for the group of selected options. |
+| `availableGroupText` | `string` | `"Available"` | Header text for the group of unselected options. |
 | `showSelectAll` | `boolean` | `true` | Whether to show the "Select All" button. |
 | `showDeselectAll` | `boolean` | `true` | Whether to show the "Deselect All" button. |
 | `onSelect` | `function` | `null` | Callback function triggered when selection changes. Receives an array of selected values. |

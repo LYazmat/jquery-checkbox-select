@@ -7,6 +7,8 @@ import $ from 'jquery';
             selectAllText: 'Select All',
             deselectAllText: 'Deselect All',
             noResultsText: 'No results found',
+            selectedGroupText: 'Selected',
+            availableGroupText: 'Available',
             showSelectAll: true,
             showDeselectAll: true,
             onSelect: function() {}
@@ -56,22 +58,42 @@ import $ from 'jquery';
             // Populate options
             function populateOptions() {
                 $optionsContainer.empty();
-                $originalSelect.find('option').each(function() {
-                    const $opt = $(this);
-                    const val = $opt.val();
-                    const text = $opt.text();
-                    const isChecked = $opt.prop('selected');
+                
+                const $options = $originalSelect.find('option');
+                const $selected = $options.filter(':selected');
+                const $unselected = $options.not(':selected');
 
-                    const $optionRow = $(`
-                        <div class="checkbox-select-option ${isChecked ? 'selected' : ''}" data-value="${val}">
-                            <input type="checkbox" ${isChecked ? 'checked' : ''}>
-                            <label>${text}</label>
-                        </div>
-                    `);
+                if ($selected.length > 0) {
+                    $optionsContainer.append(`<div class="checkbox-select-group-header">${settings.selectedGroupText}</div>`);
+                    $selected.each(function() {
+                        appendOptionRow($(this), true);
+                    });
+                }
 
-                    $optionsContainer.append($optionRow);
-                });
+                if ($unselected.length > 0) {
+                    if ($selected.length > 0) {
+                        $optionsContainer.append(`<div class="checkbox-select-group-header">${settings.availableGroupText}</div>`);
+                    }
+                    $unselected.each(function() {
+                        appendOptionRow($(this), false);
+                    });
+                }
+                
                 updateDisplay();
+            }
+
+            function appendOptionRow($opt, isChecked) {
+                const val = $opt.val();
+                const text = $opt.text();
+
+                const $optionRow = $(`
+                    <div class="checkbox-select-option ${isChecked ? 'selected' : ''}" data-value="${val}">
+                        <input type="checkbox" ${isChecked ? 'checked' : ''}>
+                        <label>${text}</label>
+                    </div>
+                `);
+
+                $optionsContainer.append($optionRow);
             }
 
             function updateDisplay() {
@@ -93,6 +115,13 @@ import $ from 'jquery';
                 $originalSelect.find(`option[value="${val}"]`).prop('selected', isChecked);
                 $originalSelect.trigger('change');
                 settings.onSelect($originalSelect.val());
+                
+                // Re-populate to move item to correct group
+                const searchQuery = $search.val();
+                populateOptions();
+                if (searchQuery) {
+                    $search.trigger('input');
+                }
             });
 
             // Prevent checkbox click from double triggering
@@ -107,6 +136,13 @@ import $ from 'jquery';
                 $originalSelect.find(`option[value="${val}"]`).prop('selected', isChecked);
                 $originalSelect.trigger('change');
                 settings.onSelect($originalSelect.val());
+
+                // Re-populate to move item to correct group
+                const searchQuery = $search.val();
+                populateOptions();
+                if (searchQuery) {
+                    $search.trigger('input');
+                }
             });
 
             // Search
@@ -136,12 +172,11 @@ import $ from 'jquery';
                 $optionsContainer.find('.checkbox-select-option:visible').each(function() {
                     const $row = $(this);
                     const val = $row.data('value');
-                    $row.find('input').prop('checked', true);
-                    $row.addClass('selected');
                     $originalSelect.find(`option[value="${val}"]`).prop('selected', true);
                 });
                 $originalSelect.trigger('change');
                 settings.onSelect($originalSelect.val());
+                populateOptions();
             });
 
             // Deselect All
@@ -149,12 +184,11 @@ import $ from 'jquery';
                 $optionsContainer.find('.checkbox-select-option:visible').each(function() {
                     const $row = $(this);
                     const val = $row.data('value');
-                    $row.find('input').prop('checked', false);
-                    $row.removeClass('selected');
                     $originalSelect.find(`option[value="${val}"]`).prop('selected', false);
                 });
                 $originalSelect.trigger('change');
                 settings.onSelect($originalSelect.val());
+                populateOptions();
             });
         });
     };
