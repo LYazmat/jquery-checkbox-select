@@ -33,7 +33,7 @@
 }
 
 .checkbox-select-options {
-    max-height: 280px;
+    max-height: 35vh;
     overflow-y: auto;
     scrollbar-width: thin;
     scrollbar-color: #e2e8f0 transparent;
@@ -119,6 +119,8 @@
     user-select: none;
     font-weight: 400; /* Normal by default */
     transition: all 0.15s ease;
+    margin-bottom: 0;
+    margin-top:0;
 }
 
 .checkbox-select-option.selected label {
@@ -201,4 +203,27 @@
 
 .checkbox-select-options div:not(.checkbox-select-group-header) + .checkbox-select-group-header {
     top: auto; /* Only the first one should probably be sticky if we want, but let's keep it simple */
+}
+
+.checkbox-select-title {
+    padding: 1rem 1rem 0.5rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #1e293b;
+    background: #ffffff;
+}
+
+.checkbox-select-footer {
+    padding: 0.75rem 1rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: #475569;
+    background: #f8fafc;
+    border-top: 1px solid #f1f5f9;
+    text-align: left;
+}
+
+.checkbox-select-footer.empty {
+    color: #94a3b8;
+    font-style: italic;
 }

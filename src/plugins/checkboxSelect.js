@@ -1,6 +1,9 @@
-import $ from 'jquery';
-
 (function($) {
+    if (!$) {
+        console.error('CheckboxSelect plugin requires jQuery');
+        return;
+    }
+
     $.fn.checkboxSelect = function(options) {
         const settings = $.extend({
             placeholder: 'Select options',
@@ -12,6 +15,11 @@ import $ from 'jquery';
             ignoreDiacritics: true,
             showSelectAll: true,
             showDeselectAll: true,
+            showTitle: true,
+            titleText: null,
+            showFooter: true,
+            footerText: 'Selected {selected} of {total}',
+            noItemsSelectedText: 'No items selected',
             onSelect: function() {}
         }, options);
 
@@ -22,9 +30,26 @@ import $ from 'jquery';
             $originalSelect.hide();
             $originalSelect.data('checkbox-select-initialized', true);
 
+            // Determine title
+            let title = settings.titleText;
+            if (!title && settings.showTitle) {
+                const id = $originalSelect.attr('id');
+                if (id) {
+                    const $label = $(`label[for="${id}"]`);
+                    if ($label.length) {
+                        title = $label.text();
+                        $label.hide(); // Hide original label if we're using it
+                    }
+                }
+            }
+
             // Create container
             const $container = $('<div class="checkbox-select-container"></div>');
             
+            if (settings.showTitle && title) {
+                $container.append(`<div class="checkbox-select-title">${title}</div>`);
+            }
+
             // Create actions HTML conditionally
             let actionsHtml = '';
             if (settings.showSelectAll || settings.showDeselectAll) {
@@ -55,6 +80,13 @@ import $ from 'jquery';
 
             const $optionsContainer = $list.find('.checkbox-select-options');
             const $search = $list.find('.checkbox-select-search');
+            
+            // Create footer if needed
+            let $footer = null;
+            if (settings.showFooter) {
+                $footer = $('<div class="checkbox-select-footer"></div>');
+                $list.append($footer);
+            }
 
             const normalizeString = (str) => {
                 if (!str) return '';
@@ -103,7 +135,19 @@ import $ from 'jquery';
             }
 
             function updateDisplay() {
-                // No display to update in static mode, but we keep the function for compatibility
+                if (settings.showFooter && $footer) {
+                    const total = $originalSelect.find('option').length;
+                    const selected = $originalSelect.find('option:selected').length;
+                    
+                    if (selected > 0) {
+                        let text = settings.footerText
+                            .replace('{selected}', selected)
+                            .replace('{total}', total);
+                        $footer.html(text).removeClass('empty');
+                    } else {
+                        $footer.html(settings.noItemsSelectedText).addClass('empty');
+                    }
+                }
             }
 
             populateOptions();

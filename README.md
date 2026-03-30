@@ -74,6 +74,11 @@ $(document).ready(function() {
 | `ignoreDiacritics` | `boolean` | `true` | Whether the filter should ignore accents, cedillas, etc. |
 | `showSelectAll` | `boolean` | `true` | Whether to show the "Select All" button. |
 | `showDeselectAll` | `boolean` | `true` | Whether to show the "Deselect All" button. |
+| `showTitle` | `boolean` | `true` | Whether to show a title above the select. |
+| `titleText` | `string` | `null` | Custom title text. If null, it looks for an associated `<label for="...">`. |
+| `showFooter` | `boolean` | `true` | Whether to show a footer with the selection count. |
+| `footerText` | `string` | `"Selected {selected} of {total}"` | Footer text template with placeholders. |
+| `noItemsSelectedText` | `string` | `"No items selected"` | Text displayed in the footer when no items are selected. |
 | `onSelect` | `function` | `null` | Callback function triggered when selection changes. Receives an array of selected values. |
 
 ## 💅 Customization
